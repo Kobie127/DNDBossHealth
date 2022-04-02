@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import InputDamage from "../InputDamage/input-damage.component";
+import HealBoss from "../HealBoss/heal-boss.component";
 
 const HealthBar = (props) => {
 
@@ -15,16 +16,30 @@ const HealthBar = (props) => {
     console.log(currentWidth);
 
     const sendDamageToBoss = (index) => { 
-        setHealth(health - index);
+        if (currentWidth !== 0) {
+            if (health - index > 0) {
+                setHealth(health - index);
+            } else {
+                setHealth(0);
+            }
+        }
+        
     };
 
-    useEffect(() => {
+    const sendHealingToBoss = (index) => {
+        if (currentWidth !== 100) {
+            if (health + parseInt(index) > totalBossHealth) {
+                setHealth(totalBossHealth);
+            } else {
+                setHealth(health + parseInt(index));
+            }
+        }
+    }
 
-    }, [currentWidth])
 
     const containerStyles = {
         height: 20,
-        width: '100%',
+        width: '75%',
         backgroundColor: "#e0e0de",
         borderRadius: 50,
         margin: 50,
@@ -48,6 +63,7 @@ const HealthBar = (props) => {
     return (
         <div>
             <InputDamage sendDamageToBoss={sendDamageToBoss}/>
+            <HealBoss sendHealingToBoss={sendHealingToBoss}/>
             <div style={containerStyles}>
                 <div style={fillerStyles}>
                     <span style={labelStyles}>{`${currentWidth}%`}</span>
