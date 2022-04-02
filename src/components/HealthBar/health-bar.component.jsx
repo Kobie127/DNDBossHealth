@@ -25,43 +25,25 @@ const HealthBar = (props) => {
         if (currentWidth !== 0) {
             let damage = index;
             for (const [key, value] of conidtions.entries()) {
-                    if (key === 'resistances') {
-                        for (let i = 0; i < value.length; i++) {
-                            if (type === value[i]) {
-                                damage = Math.floor(damage/2);
-                                if (health - damage > 0) {
-                                    setHealth(health - damage);
-                                } else {
-                                    setHealth(0);
-                                }
+                if (key === 'resistances') {
+                    for (let i = 0; i < value.length; i++) {
+                        if (type === value[i]) {
+                            damage = Math.floor(damage/2);
+                            if (health - damage > 0) {
+                                setHealth(health - damage);
+                            } else {
+                                setHealth(0);
                             }
                         }
-                    } else {
-                        if (health - damage > 0) {
-                            setHealth(health - damage);
-                        } else {
-                            setHealth(0);
-                        }
                     }
-                
-            
+                } else {
+                    if (health - damage > 0) {
+                        setHealth(health - damage);
+                    } else {
+                        setHealth(0);
+                    }
+                }
             }
-            // for (let i = 0; i < resistances.length; i++) {
-            //     if (type === resistances[i]) {
-            //         let healthResisted = Math.floor(health - (index / 2));
-            //         if (healthResisted > 0) {
-            //             setHealth(healthResisted);
-            //         } else {
-            //             setHealth(0);
-            //         }
-            //     } else {
-            //         if (health - index > 0) {
-            //             setHealth(health - index);
-            //         } else {
-            //             setHealth(0);
-            //         }
-            //     }
-            // }
         }  
     };
 
