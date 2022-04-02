@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import InputDamage from "../InputDamage/input-damage.component";
 import HealBoss from "../HealBoss/heal-boss.component";
-
+import healthPic from "../../assets/img/health-bar-removebg-preview.png";
 const HealthBar = (props) => {
 
     const { totalBossHealth } = props;
@@ -33,16 +33,20 @@ const HealthBar = (props) => {
             } else {
                 setHealth(health + parseInt(index));
             }
-        }
+        } 
     }
 
+    const healthBarStyle = {
+        height: 30,
+        width: "100%",
+    }
 
     const containerStyles = {
-        height: 20,
-        width: '75%',
+        height: 14.5,
+        width: '27.5%',
         backgroundColor: "#e0e0de",
-        borderRadius: 50,
-        margin: 50,
+        margin: "auto",
+        marginTop: -14.5,
     }
     
     const fillerStyles = {
@@ -64,6 +68,9 @@ const HealthBar = (props) => {
         <div>
             <InputDamage sendDamageToBoss={sendDamageToBoss}/>
             <HealBoss sendHealingToBoss={sendHealingToBoss}/>
+            <div style={healthBarStyle}>
+                <img src={healthPic} alt="health bar" width="720px"/>
+            </div>
             <div style={containerStyles}>
                 <div style={fillerStyles}>
                     <span style={labelStyles}>{`${currentWidth}%`}</span>
