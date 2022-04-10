@@ -77,7 +77,6 @@ const CreateBoss = () => {
                 type="text"
                 className="form-control"
                 id="description"
-                required
                 value={boss.description}
                 onChange={handleInputChange}
                 name="description"
