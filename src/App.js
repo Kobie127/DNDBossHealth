@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import HealthBar from './components/HealthBar/health-bar.component';
 import BossName from './components/BossName/boss-name.component';
 import InputHealth from './components/InputHealth/input-health.component';
+import CreateBoss from './components/CreateBoss/create-boss.component';
 
 function App() {
   const [totalBossHealth, setTotalBossHealth] = useState(0);
@@ -28,6 +29,7 @@ function App() {
 
   return (
     <div className='App'>
+      <CreateBoss/>
       <BossName bossName={bossName}/>
       <BossActive/>
     </div>
